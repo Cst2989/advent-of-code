@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A series of programming chalanges using javascript",
   "main": "day-1.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/Cst2989/advent-of-code-2020#readme",
   "dependencies": {
     "fs": "0.0.1-security",
+    "line-reader": "^0.4.0",
     "path": "^0.12.7"
   }
 }
