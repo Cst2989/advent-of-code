@@ -2243,22 +2243,7 @@ const inputs = [
 
 // Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
 
-let biggestCaloriesByElf = 0;
-let currentCaloriesByElf = 0;
 
-for (let calory of inputs) {
-  if (calory !== 'break') {
-    let caloryValue = parseInt(calory);
-    currentCaloriesByElf = currentCaloriesByElf + caloryValue;
-  } else {
-    if (currentCaloriesByElf > biggestCaloriesByElf) {
-      biggestCaloriesByElf = currentCaloriesByElf;
-    }
-    currentCaloriesByElf = 0;
-  }
-}
-
-console.log('PART 1: ', biggestCaloriesByElf);
 
 // PART 2
 
@@ -2272,34 +2257,4 @@ console.log('PART 1: ', biggestCaloriesByElf);
 // Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
 
 let biggestCaloriesByElves = {
-  one: 0,
-  two: 0,
-  three: 0,
-};
-let currentCaloriesByElf2 = 0;
 
-for (let calory of inputs) {
-  if (calory !== 'break') {
-    let caloryValue = parseInt(calory);
-    currentCaloriesByElf2 = currentCaloriesByElf2 + caloryValue;
-  } else {
-    if (currentCaloriesByElf2 > biggestCaloriesByElves.one) {
-      biggestCaloriesByElves.three = biggestCaloriesByElves.two;
-      biggestCaloriesByElves.two = biggestCaloriesByElves.one;
-      biggestCaloriesByElves.one = currentCaloriesByElf2;
-    } else if (currentCaloriesByElf2 > biggestCaloriesByElves.two) {
-      biggestCaloriesByElves.three = biggestCaloriesByElves.two;
-      biggestCaloriesByElves.two = currentCaloriesByElf2;
-    } else if (currentCaloriesByElf2 > biggestCaloriesByElves.three) {
-      biggestCaloriesByElves.three = currentCaloriesByElf2;
-    }
-    currentCaloriesByElf2 = 0;
-  }
-}
-
-console.log(
-  'PART 2: ',
-  biggestCaloriesByElves.one +
-    biggestCaloriesByElves.two +
-    biggestCaloriesByElves.three
-);
