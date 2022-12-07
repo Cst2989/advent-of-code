@@ -311,49 +311,33 @@ const ascii_uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const priority = ' ' + ascii_lowercase + ascii_uppercase;
 const lines = bigInput.split(/\n/);
 
-const missplacedItems = [];
-
+let totalPriority = 0;
 lines.forEach((rucksack) => {
-  const firstCompartmentItems = {};
-  const secondCompartmentItems = {};
   for (let i = 0; i < rucksack.length / 2; i++) {
-    let firstCompartmentItem = rucksack[i];
-    let secondCompartmentItem = rucksack[rucksack.length - (i + 1)];
-    firstCompartmentItems[firstCompartmentItem] = 1;
-    secondCompartmentItems[secondCompartmentItem] = 1;
-    if (secondCompartmentItems[firstCompartmentItem]) {
-      missplacedItems.push(firstCompartmentItem);
-      break;
-    } else if (firstCompartmentItems[secondCompartmentItem]) {
-      missplacedItems.push(secondCompartmentItem);
+    let item = rucksack[i];
+    if (rucksack.substr(rucksack.length / 2, rucksack.length).includes(item)) {
+      let pr = priority.indexOf(item);
+      totalPriority = totalPriority + pr;
       break;
     }
   }
-});
-let totalPriority = 0;
-missplacedItems.forEach((item) => {
-  let pr = priority.indexOf(item);
-  totalPriority = totalPriority + pr;
 });
 
 console.log('part 1', totalPriority);
 
 // PRT 2
 const badgeItem = [];
-
+let secondPriority = 0;
 for (let i = 0; i <= lines.length + 1 / 3; i = i + 3) {
   const rucksack = lines[i].split('');
   rucksack.every((item) => {
     if (lines[i + 1].indexOf(item) > -1 && lines[i + 2].indexOf(item) > -1) {
-      badgeItem.push(item);
+      let pr = priority.indexOf(item);
+      secondPriority = secondPriority + pr;
       return false;
     }
     return true;
   });
 }
-let secondPriority = 0;
-badgeItem.forEach((item) => {
-  let pr = priority.indexOf(item);
-  secondPriority = secondPriority + pr;
-});
+
 console.log('part 2', secondPriority);
