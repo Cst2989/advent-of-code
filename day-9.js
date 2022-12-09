@@ -2018,7 +2018,7 @@ const directions = {
 };
 
 function solve(ropeLength) {
-  let tSet = new Set();
+  let tailPositions = new Set();
   let rope = Array.from(
     {
       length: ropeLength,
@@ -2040,17 +2040,16 @@ function solve(ropeLength) {
         let dy = rope[j - 1][1] - rope[j][1];
         if (Math.abs(dx) > 1) {
           rope[j][0] += dx > 0 ? 1 : -1;
-          if (dy != 0) rope[j][1] += dy > 0 ? 1 : -1;
+          rope[j][01] -= Math.sign(dy);
         } else if (Math.abs(dy) > 1) {
           rope[j][1] += dy > 0 ? 1 : -1;
-          if (dx != 0) rope[j][0] += dx > 0 ? 1 : -1;
+          rope[j][0] -= Math.sign(dx);
         }
       }
-      tSet.add(rope[ropeLength - 1].join('-'));
+      tailPositions.add(rope[ropeLength - 1].join('-'));
     }
   });
-  return tSet.size;
+  return tailPositions.size;
 }
-let part1 = solve(2);
-let part2 = solve(10);
-console.log(`Part 1: ${part1}\nPart 2: ${part2}\n`);
+
+console.log(`Part 1: ${solve(2)}\nPart 2: ${solve(10)}\n`);
