@@ -4,7 +4,9 @@ const eol = require('os').EOL;
 
 let startTime = performance.now();
 let part1 = (part2 = 0);
-let input = fs.readFileSync(__dirname + '/data.txt', 'utf8').split(eol + eol);
+let input = fs
+  .readFileSync(__dirname + '/monkey-data.txt', 'utf8')
+  .split(eol + eol);
 
 function op(operation, val) {
   let val2 = operation[1] == 'old' ? val : operation[1];
